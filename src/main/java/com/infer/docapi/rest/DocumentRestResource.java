@@ -12,7 +12,7 @@ import com.infer.docapi.domain.PolicyDoc;
 import com.infer.docapi.service.DocService;
 
 @RestController
-@RequestMapping("/doc")
+@RequestMapping("/documents")
 public class DocumentRestResource {
 	
 	@Autowired
@@ -23,12 +23,12 @@ public class DocumentRestResource {
 		return docService.readAllDocs();
 	}
 	
-	@GetMapping(path = "/getAll",  produces = "application/json")
+	@GetMapping(produces = "application/json")
 	public List<PolicyDoc> getDocuments() {
 		return docService.getAllDocs();
 	}
 	
-	@GetMapping(path = "/getDocument/{id}",  produces = "application/json")
+	@GetMapping(path = "/{id}",  produces = "application/json")
 	public PolicyDoc getDocument(@PathVariable("id") String id) {
 		return docService.getDoc(id);
 	}

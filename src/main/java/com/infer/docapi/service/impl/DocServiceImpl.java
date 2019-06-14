@@ -51,7 +51,7 @@ public class DocServiceImpl implements DocService {
 	@Override
 	@Transactional
 	public List<PolicyDoc> getAllDocs() {
-		return docRepository.findAll();
+		return docRepository.getAllDocNames();
 	}
 	
 	@Override
