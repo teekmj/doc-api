@@ -59,7 +59,7 @@ public class DocumentParser {
 						para1.setSectionType(SectionType.TEXT);
 						if (!paraList.isEmpty()
 								&& paraList.get(paraList.size() - 1).getSectionType().equals(SectionType.HEADING)) {
-							para1.setSectionType(SectionType.SECTION_HEADING);
+							paraList.get(paraList.size() - 1).setSectionType(SectionType.SECTION_HEADING);
 						}
 					}
 					para1.setElementStyles(elementStyles);
