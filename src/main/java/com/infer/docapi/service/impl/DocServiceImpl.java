@@ -11,10 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.infer.docapi.dao.ISOGuidelinePolicyRepository;
 import com.infer.docapi.dao.PolicyDocRepository;
+import com.infer.docapi.domain.ISOGuidelinePolicy;
 import com.infer.docapi.domain.PolicyDoc;
 import com.infer.docapi.exception.BusinessException;
 import com.infer.docapi.parser.DocumentParser;
+import com.infer.docapi.parser.ISOParser;
 import com.infer.docapi.service.DocService;
 
 @Service
@@ -24,6 +27,10 @@ public class DocServiceImpl implements DocService {
 	DocumentParser documentParser;
 	@Autowired
 	PolicyDocRepository docRepository;
+	@Autowired
+	ISOGuidelinePolicyRepository policyRepository;
+	@Autowired
+	ISOParser isoParser;
 	
 	private static final String FOLDER_PATH = "G:\\Makeathon\\docs\\";
 	
@@ -58,5 +65,11 @@ public class DocServiceImpl implements DocService {
 	@Transactional
 	public PolicyDoc getDoc(String id) {
 		return docRepository.findById(id).orElseThrow(() -> new BusinessException("Not found"));
+	}
+	
+	@Override
+	@Transactional
+	public List<ISOGuidelinePolicy> readAndSaveISO(){
+		return policyRepository.saveAll(isoParser.parseISO());
 	}
 }

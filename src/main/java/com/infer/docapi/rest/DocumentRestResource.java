@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.infer.docapi.domain.ISOGuidelinePolicy;
 import com.infer.docapi.domain.PolicyDoc;
 import com.infer.docapi.service.DocService;
 
@@ -33,5 +34,10 @@ public class DocumentRestResource {
 	@GetMapping(path = "/{id}",  produces = "application/json")
 	public PolicyDoc getDocument(@PathVariable("id") String id) {
 		return docService.getDoc(id);
+	}
+	
+	@PostMapping(path = "/iso",  produces = "application/json")
+	public List<ISOGuidelinePolicy> readISO() {
+		return docService.readAndSaveISO();
 	}
 }
