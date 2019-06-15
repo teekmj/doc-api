@@ -13,9 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.infer.docapi.dao.ISOGuidelinePolicyRepository;
 import com.infer.docapi.dao.PolicyDocRepository;
+import com.infer.docapi.dao.UserInteractionRepository;
 import com.infer.docapi.domain.ISOGuidelinePolicy;
 import com.infer.docapi.domain.PolicyDoc;
-import com.infer.docapi.exception.BusinessException;
+import com.infer.docapi.domain.UserInteractionMatrics;
+import com.infer.docapi.helper.MatricsScoreCalculator;
 import com.infer.docapi.parser.DocumentParser;
 import com.infer.docapi.parser.ISOParser;
 import com.infer.docapi.service.DocService;
@@ -30,7 +32,11 @@ public class DocServiceImpl implements DocService {
 	@Autowired
 	ISOGuidelinePolicyRepository policyRepository;
 	@Autowired
+	UserInteractionRepository interactionRepository;
+	@Autowired
 	ISOParser isoParser;
+	@Autowired
+	MatricsScoreCalculator matricsScoreCalculator; 
 	
 	private static final String FOLDER_PATH = "G:\\Makeathon\\docs\\";
 	
@@ -64,12 +70,28 @@ public class DocServiceImpl implements DocService {
 	@Override
 	@Transactional
 	public PolicyDoc getDoc(String id) {
-		return docRepository.findById(id).orElseThrow(() -> new BusinessException("Not found"));
+		PolicyDoc policyDoc = docRepository.findById(id).orElse(null);
+		if(policyDoc != null) {
+			return assignParagraphScores(policyDoc);
+		}
+		return null;
 	}
 	
 	@Override
 	@Transactional
 	public List<ISOGuidelinePolicy> readAndSaveISO(){
 		return policyRepository.saveAll(isoParser.parseISO());
+	}
+	
+	
+	private PolicyDoc assignParagraphScores(PolicyDoc policyDoc) {
+		List<UserInteractionMatrics> matricsList = interactionRepository.getByDocID(policyDoc.getId());
+		for (UserInteractionMatrics matric: matricsList) {
+				policyDoc.getParagraphs()
+				.stream()
+				.filter(each -> each.getSeqNo() == matric.getParagraphSeqNo())
+				.forEach(each -> each.setUserScore(matricsScoreCalculator.calculateScore(matric)));
+		}
+		return policyDoc;
 	}
 }

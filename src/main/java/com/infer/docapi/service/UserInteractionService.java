@@ -9,4 +9,5 @@ public interface UserInteractionService {
 
 	PolicyDoc getParaDetails(int seqNo, String id);
 	List<UserInteractionMatrics> saveMatric(List<UserInteractionMatrics> matrics);
+	
 }

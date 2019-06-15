@@ -19,7 +19,7 @@ public class UserInteractionMatrics implements Serializable{
 	private String id;
 	
 	private String docId;
-	private Long paragraphSeqNo;
+	private int paragraphSeqNo;
 	private Long copyCount;
 	private Long mouseOverCount;
 	private Long mouseOverTime;
@@ -29,6 +29,6 @@ public class UserInteractionMatrics implements Serializable{
 	
 	
 	public boolean isEmpty() {
-		return this.getMouseOverCount() == 0 && this.getMouseOverTime() == 0 && this.getCopyCount() == 0;
+		return this.getMouseOverCount().equals(0L) && this.getMouseOverTime().equals(0L) && this.getCopyCount().equals(0L);
 	}
 }
