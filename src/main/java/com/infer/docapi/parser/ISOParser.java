@@ -11,9 +11,18 @@ import org.springframework.stereotype.Component;
 
 import com.infer.docapi.domain.ISOGuidelinePolicy;
 
+/**
+ * Only used for an initial parsing of ISO27001 document
+ * @author TANAY
+ *
+ */
 @Component
 public class ISOParser {
-
+	
+	/**
+	 * Parse the ISO27001 policy stored in local hardDrive
+	 * @return
+	 */
 	public List<ISOGuidelinePolicy> parseISO() {
 
 		List<String> policySections = new ArrayList<>();

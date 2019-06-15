@@ -24,15 +24,20 @@ public class UserInteractionServiceImpl implements UserInteractionService{
 	@Override
 	@Transactional
 	public PolicyDoc getParaDetails(int seqNo, String id) {
+	
 		return docRepository.getParagraph(id).get(0);
 	}
 	
+	/** 
+	 * Add or update UserInteractionMatrics data for a section
+	 * @param matrices user interaction details for a session
+	 */
 	@Override
 	@Transactional
-	public List<UserInteractionMatrics> saveMatric(List<UserInteractionMatrics> matrics) {
-		matrics = matrics.stream().filter(m -> !m.isEmpty()).collect(Collectors.toList());
+	public List<UserInteractionMatrics> saveMatric(List<UserInteractionMatrics> matrices) {
+		matrices = matrices.stream().filter(m -> !m.isEmpty()).collect(Collectors.toList());
 		
-		for(UserInteractionMatrics eachMatrics : matrics) {
+		for(UserInteractionMatrics eachMatrics : matrices) {
 			UserInteractionMatrics matricsDB = userInteractionRepository.getUserInteractionMatric(eachMatrics.getDocId(), eachMatrics.getParagraphSeqNo());
 			if (matricsDB != null) {
 				matricsDB.setCopyCount(matricsDB.getCopyCount() + eachMatrics.getCopyCount());
@@ -44,7 +49,7 @@ public class UserInteractionServiceImpl implements UserInteractionService{
 				userInteractionRepository.save(eachMatrics);
 			}
 		}
-		return matrics;
+		return matrices;
 	}
 	
 }

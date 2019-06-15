@@ -18,10 +18,9 @@ public class UserInteractionResource {
 	@Autowired
 	UserInteractionService userInteractionService;
 	
-	
 	@PostMapping("/")
 	@ResponseBody
-	public List<UserInteractionMatrics> saveUserInteractionMatrics(@RequestBody List<UserInteractionMatrics> matric) {
-		return userInteractionService.saveMatric(matric);
+	public List<UserInteractionMatrics> saveUserInteractionMatrics(@RequestBody List<UserInteractionMatrics> matrices) {
+		return userInteractionService.saveMatric(matrices);
 	}
 }

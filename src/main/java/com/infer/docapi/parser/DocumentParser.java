@@ -16,9 +16,18 @@ import com.infer.docapi.domain.PolicyDoc;
 import com.infer.docapi.domain.ElementStyle;
 import com.infer.docapi.domain.SectionType;
 
+/**
+ * For Parsing docx files
+ * @author TANAY
+ *
+ */
 @Component
 public class DocumentParser {
-
+	/**
+	 * Parse the given doc in the policy doc format
+	 * @param file
+	 * @return
+	 */
 	public PolicyDoc parseDoc(File file) {
 		PolicyDoc policyDoc = new PolicyDoc();
 

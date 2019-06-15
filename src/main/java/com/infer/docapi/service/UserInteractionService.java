@@ -8,6 +8,6 @@ import com.infer.docapi.domain.UserInteractionMatrics;
 public interface UserInteractionService {
 
 	PolicyDoc getParaDetails(int seqNo, String id);
-	List<UserInteractionMatrics> saveMatric(List<UserInteractionMatrics> matrics);
+	List<UserInteractionMatrics> saveMatric(List<UserInteractionMatrics> matrices);
 	
 }
