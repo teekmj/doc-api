@@ -1,7 +1,5 @@
 package com.infer.docapi.rest;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,19 +7,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.infer.docapi.domain.UserInteractionMatrics;
-import com.infer.docapi.service.UserInteractionService;
+import com.infer.docapi.dao.TextMatrixRepository;
+import com.infer.docapi.domain.SelectedTextMatrix;
 
 @RestController
-@RequestMapping("/userinteractionmatrix")
-public class UserInteractionResource {
-	@Autowired
-	UserInteractionService userInteractionService;
+@RequestMapping("/textmatrix")
+public class TextMatrixRestResource {
 	
+	@Autowired
+	private TextMatrixRepository matrixRepository;
 	
 	@PostMapping("/")
 	@ResponseBody
-	public List<UserInteractionMatrics> saveUserInteractionMatrics(@RequestBody List<UserInteractionMatrics> matric) {
-		return userInteractionService.saveMatric(matric);
+	public SelectedTextMatrix saveTextMatrix(@RequestBody SelectedTextMatrix textMatrix) {
+		return matrixRepository.save(textMatrix);
 	}
 }
