@@ -40,6 +40,10 @@ public class DocServiceImpl implements DocService {
 	
 	private static final String FOLDER_PATH = "G:\\Makeathon\\docs\\";
 	
+	/**
+	 * A service to Read all documents in the given folder
+	 * Should be triggered only when we need to load the data to the system
+	 */
 	@Override
 	@Transactional
 	public List<PolicyDoc> readAllDocs() {
@@ -61,12 +65,18 @@ public class DocServiceImpl implements DocService {
 		return policyDocs;
 	}
 	
+	/**
+	 * Get all policy documents
+	 */
 	@Override
 	@Transactional
 	public List<PolicyDoc> getAllDocs() {
 		return docRepository.getAllDocNames();
 	}
 	
+	/**
+	 * Get a specific document by id
+	 */
 	@Override
 	@Transactional
 	public PolicyDoc getDoc(String id) {
@@ -77,13 +87,21 @@ public class DocServiceImpl implements DocService {
 		return null;
 	}
 	
+	/**
+	 * A service to populate the ISO27001 data for the first time
+	 */
 	@Override
 	@Transactional
 	public List<ISOGuidelinePolicy> readAndSaveISO(){
 		return policyRepository.saveAll(isoParser.parseISO());
 	}
 	
-	
+	/**
+	 * Calculate the the sectional score based on user-interaction events for all paragraphs in a document
+	 * called when we do a getByID
+	 * @param policyDoc
+	 * @return
+	 */
 	private PolicyDoc assignParagraphScores(PolicyDoc policyDoc) {
 		List<UserInteractionMatrics> matricsList = interactionRepository.getByDocID(policyDoc.getId());
 		for (UserInteractionMatrics matric: matricsList) {
