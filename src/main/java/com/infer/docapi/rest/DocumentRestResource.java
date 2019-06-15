@@ -26,7 +26,7 @@ public class DocumentRestResource {
 		return docService.readAllDocs();
 	}
 	
-	@GetMapping(produces = "application/json")
+	@GetMapping(path = "/", produces = "application/json")
 	public List<PolicyDoc> getDocuments() {
 		return docService.getAllDocs();
 	}

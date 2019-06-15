@@ -20,7 +20,7 @@ public class Paragraph implements Serializable {
 	private String style;
 	private SectionType sectionType;
 	private int seqNo;
-	private String paraSummary;
+	private String summary;
 	private Double importance;
 	private List<ElementStyle> elementStyles;
 	
