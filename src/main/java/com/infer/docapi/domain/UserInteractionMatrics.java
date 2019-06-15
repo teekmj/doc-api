@@ -29,4 +29,5 @@ public class UserInteractionMatrics implements Serializable{
 	private Long mouseOverTime;
 	private Long scrollCount;
 	private Long scrollTime;
+	private Long count;
 }
