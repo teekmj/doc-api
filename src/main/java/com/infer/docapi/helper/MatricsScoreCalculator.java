@@ -37,12 +37,12 @@ public class MatricsScoreCalculator {
 	 * @return
 	 */
 	public void calculateScore(Paragraph paragraph, UserInteractionMatrics interactionMatrics) {
-		paragraph.getUserScore().setCopyCountScore(copyFactor * interactionMatrics.getCopyCount());	
-		paragraph.getUserScore().setSelectionCountScore(selectionFactor * interactionMatrics.getSelectionCount());
-		paragraph.getUserScore().setCountScore(countFactor * interactionMatrics.getCount());
-		paragraph.getUserScore().setMouseOverCountScore(mouseOverFactor * interactionMatrics.getMouseOverCount());
-		paragraph.getUserScore().setMouseOverTimeScore(mouseOverTimeFactor * interactionMatrics.getMouseOverTime());
-		paragraph.getUserScore().setScrollCountScore(scrollFactor * interactionMatrics.getScrollCount());
-		paragraph.getUserScore().setScrollTimeScore(scrollTimeFactor * interactionMatrics.getScrollTime());
+		paragraph.getUserAttentionScore().setCopyCountScore(copyFactor * interactionMatrics.getCopyCount());	
+		paragraph.getUserAttentionScore().setSelectionCountScore(selectionFactor * interactionMatrics.getSelectionCount());
+		paragraph.getUserAttentionScore().setCountScore(countFactor * interactionMatrics.getCount());
+		paragraph.getUserAttentionScore().setMouseOverCountScore(mouseOverFactor * interactionMatrics.getMouseOverCount());
+		paragraph.getUserAttentionScore().setMouseOverTimeScore(mouseOverTimeFactor * interactionMatrics.getMouseOverTime());
+		paragraph.getUserAttentionScore().setScrollCountScore(scrollFactor * interactionMatrics.getScrollCount());
+		paragraph.getUserAttentionScore().setScrollTimeScore(scrollTimeFactor * interactionMatrics.getScrollTime());
 	}
 }
