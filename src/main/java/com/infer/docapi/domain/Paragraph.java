@@ -20,6 +20,6 @@ public class Paragraph implements Serializable {
 	private Double importance;
 	private List<ElementStyle> elementStyles;
 	
-	private UserAttentionScore userScore = new UserAttentionScore();
+	private UserAttentionScore userAttentionScore = new UserAttentionScore();
 	
 }
