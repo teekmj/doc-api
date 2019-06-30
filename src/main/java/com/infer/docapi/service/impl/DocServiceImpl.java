@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,12 +106,15 @@ public class DocServiceImpl implements DocService {
 	 */
 	private PolicyDoc assignParagraphScores(PolicyDoc policyDoc) {
 		List<UserInteractionMatrics> matricsList = interactionRepository.getByDocID(policyDoc.getId());
-		for (UserInteractionMatrics matric: matricsList) {
-				policyDoc.getParagraphs()
-				.stream()
-				.filter(each -> each.getSeqNo() == matric.getParagraphSeqNo())
-				.forEach(each -> each.setUserScore(matricsScoreCalculator.calculateScore(matric)));
-		}
+		
+		Map<Integer, UserInteractionMatrics> matricsMap = matricsList.stream()
+				.collect(Collectors.toMap(UserInteractionMatrics::getParagraphSeqNo, x -> x));
+		
+		policyDoc.getParagraphs()
+		.stream()
+		.filter(e -> matricsMap.containsKey(e.getSeqNo()))
+		.forEach(each -> each.setUserScore(matricsScoreCalculator.calculateScore(each, matricsMap.get(each.getSeqNo()))));
+		
 		return policyDoc;
 	}
 }

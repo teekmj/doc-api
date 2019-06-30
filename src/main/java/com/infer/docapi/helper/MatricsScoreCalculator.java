@@ -2,6 +2,7 @@ package com.infer.docapi.helper;
 
 import org.springframework.stereotype.Component;
 
+import com.infer.docapi.domain.Paragraph;
 import com.infer.docapi.domain.UserInteractionMatrics;
 
 @Component
@@ -16,7 +17,7 @@ public class MatricsScoreCalculator {
 	 * @param interactionMatrics
 	 * @return
 	 */
-	public Double calculateScore(UserInteractionMatrics interactionMatrics) {
+	public Double calculateScore(Paragraph paragraph, UserInteractionMatrics interactionMatrics) {
 		return (interactionMatrics.getCopyCount() * COPY_COUNT + interactionMatrics.getMouseOverCount() * MOUSE_OVER_COUNT) ;
 	}
 }
