@@ -44,5 +44,8 @@ public class MatricsScoreCalculator {
 		paragraph.getUserAttentionScore().setMouseOverTimeScore(mouseOverTimeFactor * interactionMatrics.getMouseOverTime());
 		paragraph.getUserAttentionScore().setScrollCountScore(scrollFactor * interactionMatrics.getScrollCount());
 		paragraph.getUserAttentionScore().setScrollTimeScore(scrollTimeFactor * interactionMatrics.getScrollTime());
+		
+		paragraph.getUserAttentionScore().computeTotalScore();
+		
 	}
 }
