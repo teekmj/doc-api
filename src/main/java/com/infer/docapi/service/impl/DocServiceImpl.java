@@ -113,7 +113,7 @@ public class DocServiceImpl implements DocService {
 		policyDoc.getParagraphs()
 		.stream()
 		.filter(e -> matricsMap.containsKey(e.getSeqNo()))
-		.forEach(each -> each.setUserScore(matricsScoreCalculator.calculateScore(each, matricsMap.get(each.getSeqNo()))));
+		.forEach(each -> matricsScoreCalculator.calculateScore(each, matricsMap.get(each.getSeqNo())));
 		
 		return policyDoc;
 	}
