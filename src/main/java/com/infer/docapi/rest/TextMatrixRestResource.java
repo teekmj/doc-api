@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.infer.docapi.dao.TextMatrixRepository;
-import com.infer.docapi.domain.SelectedTextMatrix;
+import com.infer.docapi.domain.SelectedTextMatrics;
 
 @RestController
 @RequestMapping("/textmatrix")
@@ -19,7 +19,7 @@ public class TextMatrixRestResource {
 	
 	@PostMapping("/")
 	@ResponseBody
-	public SelectedTextMatrix saveTextMatrix(@RequestBody SelectedTextMatrix textMatrix) {
+	public SelectedTextMatrics saveTextMatrix(@RequestBody SelectedTextMatrics textMatrix) {
 		return matrixRepository.save(textMatrix);
 	}
 }

@@ -44,6 +44,9 @@ public class UserInteractionServiceImpl implements UserInteractionService{
 				matricsDB.setCount(matricsDB.getCount() + 1);
 				matricsDB.setMouseOverCount(matricsDB.getMouseOverCount() + eachMatrics.getMouseOverCount());
 				matricsDB.setMouseOverTime(matricsDB.getMouseOverTime() + eachMatrics.getMouseOverTime());
+				matricsDB.setScrollTime(matricsDB.getScrollTime() + eachMatrics.getScrollTime());
+				matricsDB.setScrollCount(matricsDB.getScrollCount() + eachMatrics.getScrollCount());
+				matricsDB.setSelectionCount(matricsDB.getSelectionCount() + eachMatrics.getSelectionCount());
 				userInteractionRepository.save(matricsDB);
 			} else {
 				userInteractionRepository.save(eachMatrics);

@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @Document
 @Data
 @EqualsAndHashCode(of = "id")
-public class SelectedTextMatrix {
+public class SelectedTextMatrics {
 	@Id
 	private String id;
 	
